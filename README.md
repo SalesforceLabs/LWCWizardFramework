@@ -19,4 +19,4 @@ LoanApplicationWizardSingle - Simulates a single-page loan application wizard, e
 ### **NOTE** 
 
 You can see a demo of all the features here : [LWC Wizard Framework](https://www.youtube.com/watch?v=h0J7SJ1QGwQ).
-A salesforce package with all of the wizards shown in the demo is available here : [Salesforce pp Exchange Listing](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000GCk7RUAT).
+A salesforce package with all of the wizards shown in the demo is available here : [Salesforce App Exchange Listing](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000GCk7RUAT).
