@@ -1,0 +1,216 @@
+<!--
+ * Copyright (c) 2018, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ -->
+<template>
+  <c-lwc-wizard
+    draftid={draftid}
+    name="censusWizard"
+    usedraft="true"
+    ondraftsaveerror={handleDraftSaveError}
+    ondraftloaded={handleDraftLoaded}
+  >
+    <div slot="wizardPages">
+      <article class="slds-card slds-box">
+        <div class="slds-card__body">
+          <c-lwc-wizard-page pagename="locationPage" isstartpage="true">
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-text-heading_medium">
+                <p>
+                  In order to collect your address, we first need to know where
+                  you will be living on April 1, 2020.
+                </p>
+                <p>Please select where you will be living on April 1, 2020.</p>
+              </div>
+              <div class="slds-form--inline">
+                <div class="slds-form-element">
+                  <lightning-radio-group
+                    name="stateLived"
+                    options={livingOptions}
+                    value={_wizarddata.locationPage.stateLived}
+                    type="radio"
+                    class=""
+                  ></lightning-radio-group>
+                </div>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page pagename="addressPage">
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-text-heading_medium">
+                <p>Where were you living on April 1, 2020 ?</p>
+                <p>
+                  Please provide a complete street address for your residence.
+                  Provide the street address you would use to have a package
+                  delivered directly to your residence, not a rural route or
+                  P.O. Box address used for mailing purposes. A street address
+                  is the most helpful for processing your response.
+                </p>
+              </div>
+              <div>
+                <lightning-input-address
+                  street-label="Street"
+                  city-label="City"
+                  country-label="Country"
+                  province-label="State"
+                  postal-code-label="PostalCode"
+                  street={_wizarddata.addressPage.street}
+                  province={_wizarddata.addressPage.province}
+                  city={_wizarddata.addressPage.city}
+                  country={_wizarddata.addressPage.country}
+                  postal-code={_wizarddata.addressPage.postalCode}
+                >
+                </lightning-input-address>
+                <p></p>
+                <template if:true={_wizarddata.addressPage.noAddress}>
+                  <lightning-input
+                    type="checkbox"
+                    label="I do not have a street address"
+                    name="noAddress"
+                    checked
+                  ></lightning-input>
+                </template>
+                <template if:false={_wizarddata.addressPage.noAddress}>
+                  <lightning-input
+                    type="checkbox"
+                    label="I do not have a street address"
+                    name="noAddress"
+                  ></lightning-input>
+                </template>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page pagename="hasRuralAddressPage">
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-form--inline">
+                <div class="slds-form-element">
+                  <template
+                    if:true={_wizarddata.hasRuralAddressPage.hasRuralAddress}
+                  >
+                    <lightning-input
+                      type="checkbox"
+                      label="Do you have a Rural Route address?"
+                      name="hasRuralAddress"
+                      checked
+                    ></lightning-input>
+                  </template>
+                  <template
+                    if:false={_wizarddata.hasRuralAddressPage.hasRuralAddress}
+                  >
+                    <lightning-input
+                      type="checkbox"
+                      label="Do you have a Rural Route address?"
+                      name="hasRuralAddress"
+                    ></lightning-input>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page pagename="wasHomeLessPage">
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-form--inline">
+                <div class="slds-form-element">
+                  <template if:true={_wizarddata.wasHomeLessPage.isHomeless}>
+                    <lightning-input
+                      type="checkbox"
+                      label="Were you experiencing homelessness on April 1, 2020?"
+                      name="isHomeless"
+                      checked
+                    ></lightning-input>
+                  </template>
+                  <template if:false={_wizarddata.wasHomeLessPage.isHomeless}>
+                    <lightning-input
+                      type="checkbox"
+                      label="Were you experiencing homelessness on April 1, 2020?"
+                      name="isHomeless"
+                    ></lightning-input>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page pagename="closestAddress">
+            <div class="pageClass" slot="wizardPageContent">
+              <div>
+                <p>Please provide your closest address ?</p>
+                <lightning-input-address
+                  street-label="Street"
+                  city-label="City"
+                  country-label="Country"
+                  province-label="State"
+                  postal-code-label="PostalCode"
+                  street={_wizarddata.closestAddress.street}
+                  province={_wizarddata.closestAddress.province}
+                  country={_wizarddata.closestAddress.country}
+                  postal-code={_wizarddata.closestAddress.postalCode}
+                >
+                </lightning-input-address>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page pagename="finalPage" issubmitpage="true">
+            <div class="pageClass" slot="wizardPageContent">
+              Please review your information
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page
+            pagename="somewhereElseMessage"
+            isterminalpage="true"
+          >
+            <div class="pageClass" slot="wizardPageContent">
+              If you were not living in a U.S. state, the District of Columbia,
+              or Puerto Rico on April 1, 2020, you do not need to complete this
+              2020 Census questionnaire.
+              <p></p>
+              If you were living in American Samoa, the Commonwealth of the
+              Northern Mariana Islands, Guam, or the U.S. Virgin Islands on
+              April 1, 2020, an enumerator will contact you to complete your
+              questionnaire in person.
+              <p></p>
+              You may close the browser.
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page pagename="completionMessage" isterminalpage="true">
+            <div class="pageClass terminalPage" slot="wizardPageContent">
+              Thanks for filling the census. You may close the browser.
+            </div>
+          </c-lwc-wizard-page>
+        </div>
+      </article>
+    </div>
+  </c-lwc-wizard>
+  <div
+    class="slds-box_x-small slds-align_absolute-center slds-text-color_destructive"
+  >
+    {_error}
+  </div>
+  <template if:true={_areButtonsVisible}>
+    <div class="slds-align_absolute-center">
+      <lightning-button
+        label="Previous"
+        title="Previous"
+        onclick={handlePrevious}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+
+      <lightning-button
+        variant="brand"
+        label="Next"
+        title="Primary action"
+        onclick={handleNext}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+
+      <lightning-button
+        variant="brand"
+        label="Complete"
+        title="Primary action"
+        onclick={handleComplete}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+    </div>
+  </template>
+</template>

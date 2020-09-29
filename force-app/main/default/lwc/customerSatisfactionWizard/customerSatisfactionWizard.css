@@ -1,0 +1,20 @@
+.pageClass {
+  padding: 30px;
+  background-color: #fff;
+  min-height: 200px;
+}
+
+p {
+  display: block;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.surveyTitle {
+  color: #00bf6f;
+}
+
+.terminalPage {
+  padding-top: 30px;
+}

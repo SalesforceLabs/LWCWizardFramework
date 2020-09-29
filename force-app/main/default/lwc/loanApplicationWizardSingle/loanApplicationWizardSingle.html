@@ -1,0 +1,241 @@
+<!--
+ * Copyright (c) 2018, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ -->
+<template>
+  <c-lwc-wizard
+    draftid={draftid}
+    name="loanApplicationWizardSingle"
+    usedraft="true"
+    savedraftonchange="true"
+    ondraftsaveerror={handleDraftSaveError}
+    ondraftloaded={handleDraftLoaded}
+    setpageborder="true"
+    showallpages="true"
+  >
+    <div slot="wizardPages">
+      <article class="slds-card slds-box">
+        <div class="slds-card__body">
+          <c-lwc-wizard-page pagename="personalDetails" isstartpage="true">
+            <div class="pageClass" slot="wizardPageContent">
+              <h1
+                class="slds-text-heading_medium slds-m-bottom_medium sectionheading"
+              >
+                PERSONAL DETAILS
+              </h1>
+              <lightning-layout>
+                <lightning-layout-item
+                  flexibility="auto"
+                  padding="around-small"
+                >
+                  <lightning-input-name
+                    first-name={_wizarddata.personalDetails.firstname}
+                    middle-name={_wizarddata.personalDetails.middlename}
+                    last-name={_wizarddata.personalDetails.lastname}
+                    salutation={_wizarddata.personalDetails.salutation}
+                    options={salutationOptions}
+                    required
+                  ></lightning-input-name>
+                </lightning-layout-item>
+                <lightning-layout-item
+                  flexibility="auto"
+                  padding="around-small"
+                >
+                  <div>&nbsp;</div>
+                  <div>&nbsp;</div>
+                  <lightning-input
+                    label="Date of Birth"
+                    type="date"
+                    name="dob"
+                    value={_wizarddata.personalDetails.dob}
+                    required
+                  ></lightning-input>
+                </lightning-layout-item>
+              </lightning-layout>
+            </div>
+          </c-lwc-wizard-page>
+
+          <c-lwc-wizard-page pagename="identity">
+            <div class="pageClass" slot="wizardPageContent">
+              <h1
+                class="slds-text-heading_medium slds-m-bottom_medium sectionheading"
+              >
+                IDENTITY
+              </h1>
+              <div class="slds-form--inline">
+                <div class="slds-form-element">
+                  <lightning-radio-group
+                    name="idType"
+                    options={idOptions}
+                    value={_wizarddata.identity.idType}
+                    type="radio"
+                    required
+                  ></lightning-radio-group>
+                </div>
+                <div class="slds-form-element">
+                  <lightning-input
+                    label="Id"
+                    name="id"
+                    value={_wizarddata.identity.id}
+                    required
+                  ></lightning-input>
+                </div>
+                <div class="slds-form-element">
+                  <lightning-input
+                    label="Date Of Issue"
+                    type="date"
+                    name="dateOfIssue"
+                    value={_wizarddata.identity.dateOfIssue}
+                    required
+                  ></lightning-input>
+                </div>
+                <div class="slds-form-element">
+                  <lightning-input
+                    label="Expiry Date"
+                    type="date"
+                    name="expiryDate"
+                    value={_wizarddata.identity.expiryDate}
+                    required
+                  ></lightning-input>
+                </div>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+
+          <c-lwc-wizard-page pagename="employmentDetails">
+            <div class="pageClass" slot="wizardPageContent">
+              <h1
+                class="slds-text-heading_medium slds-m-bottom_medium sectionheading"
+              >
+                EMPLOYMENT DETAILS
+              </h1>
+              <lightning-layout>
+                <lightning-layout-item
+                  flexibility="auto"
+                  padding="around-small"
+                >
+                  <lightning-input
+                    label="Name of Employer"
+                    name="empName"
+                    value={_wizarddata.employmentDetails.empName}
+                  ></lightning-input>
+                  <lightning-input
+                    type="number"
+                    max="70"
+                    label="No. of years"
+                    name="yrsworking"
+                    value={_wizarddata.employmentDetails.yrsworking}
+                  ></lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item
+                  flexibility="auto"
+                  padding="around-small"
+                >
+                  <lightning-input
+                    label="Title"
+                    name="title"
+                    value={_wizarddata.employmentDetails.title}
+                  ></lightning-input>
+                  <lightning-input
+                    type="number"
+                    label="Net Salary"
+                    name="salary"
+                    value={_wizarddata.employmentDetails.salary}
+                  ></lightning-input>
+                </lightning-layout-item>
+              </lightning-layout>
+            </div>
+          </c-lwc-wizard-page>
+
+          <c-lwc-wizard-page pagename="loanDetails">
+            <div class="pageClass" slot="wizardPageContent">
+              <h1
+                class="slds-text-heading_medium slds-m-bottom_medium sectionheading"
+              >
+                LOAN DETAILS
+              </h1>
+              <div class="slds-form-element">
+                <lightning-input
+                  type="number"
+                  max="1000000"
+                  label="Requested Amount"
+                  name="loanAmount"
+                  value={_wizarddata.loanDetails.loanAmount}
+                  required
+                ></lightning-input>
+                <lightning-input
+                  type="number"
+                  max="10"
+                  label="Maturity"
+                  name="maturity"
+                  value={_wizarddata.loanDetails.maturity}
+                  required
+                ></lightning-input>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+
+          <c-lwc-wizard-page pagename="declarations" issubmitpage="true">
+            <div class="pageClass" slot="wizardPageContent">
+              <h1
+                class="slds-text-heading_medium slds-m-bottom_medium sectionheading"
+              >
+                DECLARATIONS
+              </h1>
+              <p>
+                Everything that I have stated in this application is correct to
+                the best of my knowledge. I understand that you will retain this
+                application whether or not loan is approved. You are authorized
+                to check my credit and employment history and to answer
+                questions about your credit experience with me.
+              </p>
+              <div class="slds-form-element">
+                <lightning-textarea
+                  label="Applicant's Signature"
+                  name="signature"
+                  value={_wizarddata.declarations.signature}
+                  required
+                ></lightning-textarea>
+                <lightning-input
+                  label="Date"
+                  type="date"
+                  name="dateSigned"
+                  value={_wizarddata.declarations.dateSigned}
+                  required
+                ></lightning-input>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+
+          <c-lwc-wizard-page pagename="completionMessage" isterminalpage="true">
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-align_absolute-center terminalPage">
+                The application process is complete. We will review the
+                submitted information and get back to you.
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+        </div>
+      </article>
+    </div>
+  </c-lwc-wizard>
+  <div
+    class="slds-box_x-small slds-align_absolute-center slds-text-color_destructive"
+  >
+    {_error}
+  </div>
+  <template if:true={_areButtonsVisible}>
+    <div class="slds-align_absolute-center">
+      <lightning-button
+        variant="brand"
+        label="Complete"
+        title="Primary action"
+        onclick={handleComplete}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+    </div>
+  </template>
+</template>

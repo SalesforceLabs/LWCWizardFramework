@@ -1,0 +1,23 @@
+<!--
+ * Copyright (c) 2018, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ -->
+<template>
+  <template if:true={_draftfound}>
+    <template if:true={isCensusWizard}>
+      <c-census-wizard draftid={recordid}></c-census-wizard>
+    </template>
+
+    <template if:true={isLoanApplicationWizard}>
+      <c-loan-application-wizard draftid={recordid}></c-loan-application-wizard>
+    </template>
+
+    <template if:true={isLoanApplicationSingleWizard}>
+      <c-loan-application-wizard-single
+        draftid={recordid}
+      ></c-loan-application-wizard-single>
+    </template>
+  </template>
+</template>

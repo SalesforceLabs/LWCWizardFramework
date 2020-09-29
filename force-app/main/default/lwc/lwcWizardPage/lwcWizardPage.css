@@ -1,0 +1,14 @@
+/*
+ * Copyright (c) 2018, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+.customBorder {
+  position: relative;
+  border: solid 1px #ecebea;
+  border-radius: 4px;
+  display: block;
+  padding: 14px 8px 8px 8px;
+  margin-top: 0px;
+}

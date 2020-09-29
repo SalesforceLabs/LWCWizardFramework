@@ -1,0 +1,134 @@
+<!--
+ * Copyright (c) 2018, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ -->
+<template>
+  <c-lwc-wizard name="customerSatisfactionWizard">
+    <h2 class="slds-text-heading_medium slds-m-bottom_medium surveyTitle">
+      Customer Satisfaction Survey
+    </h2>
+    <div slot="wizardPages">
+      <article class="slds-card slds-box">
+        <div class="slds-card__body">
+          <c-lwc-wizard-page isstartpage="true">
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-text-heading_medium">
+                <p>
+                  1. How likely is it that you would recommend this company to a
+                  friend or colleague?
+                </p>
+              </div>
+              <div class="slds-form--inline">
+                <div class="slds-form-element">
+                  <lightning-radio-group
+                    name="recommend"
+                    options={recommendOptions}
+                    type="button"
+                  ></lightning-radio-group>
+                </div>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page>
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-text-heading_medium">
+                <p>
+                  2. Overall, how satisfied or dissatisfied are you with our
+                  company?
+                </p>
+              </div>
+              <div class="slds-form--inline">
+                <div class="slds-form-element">
+                  <lightning-radio-group
+                    name="satisfaction"
+                    options={satisfactionOptions}
+                    type="radio"
+                    required
+                  ></lightning-radio-group>
+                </div>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page>
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-text-heading_medium">
+                <p>
+                  3. Which of the following words would you use to describe our
+                  products? Select all that apply.
+                </p>
+              </div>
+              <div class="slds-form--inline">
+                <div class="slds-form-element">
+                  <lightning-checkbox-group
+                    name="description"
+                    options={reliabilityOptions}
+                    value=""
+                    required
+                  ></lightning-checkbox-group>
+                </div>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page issubmitpage="true">
+            <div class="pageClass" slot="wizardPageContent">
+              <div class="slds-text-heading_medium">
+                <p>
+                  4. Do you have any other comments, questions, or concerns?
+                </p>
+              </div>
+              <div class="slds-form--inline">
+                <div class="slds-form-element">
+                  <lightning-textarea
+                    variant="label-hidden"
+                    name="comments"
+                  ></lightning-textarea>
+                </div>
+              </div>
+            </div>
+          </c-lwc-wizard-page>
+          <c-lwc-wizard-page isterminalpage="true">
+            <div
+              class="pageClass terminalPage slds-align_absolute-center"
+              slot="wizardPageContent"
+            >
+              This survey is over. Thank you for your inputs !
+            </div>
+          </c-lwc-wizard-page>
+        </div>
+      </article>
+    </div>
+  </c-lwc-wizard>
+  <div
+    class="slds-box_x-small slds-align_absolute-center slds-text-color_destructive"
+  >
+    {_error}
+  </div>
+  <template if:true={_areButtonsVisible}>
+    <div class="slds-align_absolute-center">
+      <lightning-button
+        label="Previous"
+        title="Previous"
+        onclick={handlePrevious}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+
+      <lightning-button
+        variant="brand"
+        label="Next"
+        title="Primary action"
+        onclick={handleNext}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+
+      <lightning-button
+        variant="brand"
+        label="Complete"
+        title="Primary action"
+        onclick={handleComplete}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+    </div>
+  </template>
+</template>
