@@ -6,7 +6,7 @@ The framework utilizes the full power of lightning-input-* components to take ca
 
 The framework allows for creation of single page or multi-page wizards, automatic saving of wizard state in a custom object any time a input in the wizazrd is changed, and reloading the wizard from a previous saved state/
 
-#To get started:
+To get started:
 
 The main meat of the framework is provided by lwcWizard and lwcWizardPage.
 To understand how it works, check out some of the wizards implemented using this framework:
