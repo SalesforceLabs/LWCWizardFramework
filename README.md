@@ -6,15 +6,17 @@ The framework utilizes the full power of lightning-input-* components to take ca
 
 The framework allows for creation of single page or multi-page wizards, automatic saving of wizard state in a custom object any time a input in the wizazrd is changed, and reloading the wizard from a previous saved state/
 
-To get started:
+## TO GET STARTED
 
-The main meat of the framework is provided by lwcWizard and lwcWizardPage.
-To understand how it works, check out some of the wizards implemented using this framework:
+The main part of the framework is provided by 2 LWC components : lwcWizard and lwcWizardPage.
+To understand how it works, check out some of the wizards implemented using this framework
 
 CensusWizard - Simulates a multi-page census wizard
 CustomerSatisfactionWizard - Simulates a multi-page customer satisfaction wizard
 LoanApplicationWizard - Simulates a multi-page loan application wizard
 LoanApplicationWizardSingle - Simulates a single-page loan application wizard, each page showing up as a section in the same wizard
 
-NOTE : You can see a demo of all the features here : https://www.youtube.com/watch?v=h0J7SJ1QGwQ
+### **NOTE** 
+
+You can see a demo of all the features here : [LWC Wizard Framework] (https://www.youtube.com/watch?v=h0J7SJ1QGwQ)
 A salesforce package with all of the wizards shown in the demo is available here : https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000GCk7RUAT
