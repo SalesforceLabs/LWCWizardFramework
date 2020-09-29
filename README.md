@@ -16,4 +16,5 @@ CustomerSatisfactionWizard - Simulates a multi-page customer satisfaction wizard
 LoanApplicationWizard - Simulates a multi-page loan application wizard
 LoanApplicationWizardSingle - Simulates a single-page loan application wizard, each page showing up as a section in the same wizard
 
-NOTE : You can see a demo of all the features by installing this Salesforce package in your developer org : https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000GCk7RUAT
+NOTE : You can see a demo of all the features here : https://www.youtube.com/watch?v=h0J7SJ1QGwQ
+A salesforce package with all of the wizards shown in the demo is available here : https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000GCk7RUAT
