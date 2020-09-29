@@ -8,7 +8,7 @@ The framework allows for creation of single page or multi-page wizards, automati
 
 ## TO GET STARTED
 
-The main part of the framework is provided by 2 LWC components : lwcWizard and lwcWizardPage.
+The main part of the framework is provided by 2 LWC components : *lwcWizard* and *lwcWizardPage*.
 To understand how it works, check out some of the wizards implemented using this framework
 
 CensusWizard - Simulates a multi-page census wizard
