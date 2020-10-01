@@ -82,7 +82,7 @@ The *lwcWizard* component has slots in it in to which you would pass in your cus
 Once you define your wizard and wizard pages as above, the framework does the following things for you :
 
 * When the wizard is rendered, it automatically hides all the wizard pages and shows the one that has **isstartpage=true**
-* It provides a _**switchToPage(pageName)**_ api : So your wizard ca listen for button clicks and switch to a named page in the wizard. The framework tracks care of hiding the current page, navigating to the new page
+* It provides a _**switchToPage(pageName)**_ api : So your wizard can listen for button clicks and switch to a **named page** (check out "pageName" in the sample above) in the wizard. The framework tracks care of hiding the current page, navigating to the new page
 * It provides a _**switchBack()**_ api : When user clicks back the "Previous" button, your wizard can call this api to go back to the previous page. The wizard framework automatically keeps track of visited pages and maintains a history.
 * When user navigates between wizard pages, the framework automatically saves the state of the page as a json object in a custom object named WizardDraft__c. Currently the framework saves the state of the whole wizard in a single field as a json object. You can also customize the save behavior
 * When user navigates between wizard pages, the framework also automatically validates any *lightning-input* components allowing you to see validation errors on the page.
