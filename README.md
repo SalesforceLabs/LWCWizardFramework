@@ -91,10 +91,10 @@ Once you define your wizard and wizard pages as above, the framework does the fo
 
 To understand how to use the apis provided by this framework, check out the example wizards implemented using this framework
 
-CensusWizard - Simulates a multi-page census wizard
-CustomerSatisfactionWizard - Simulates a multi-page customer satisfaction wizard
-LoanApplicationWizard - Simulates a multi-page loan application wizard
-LoanApplicationWizardSingle - Simulates a single-page loan application wizard, each page showing up as a section in the same wizard
+* *CensusWizard* - Simulates a multi-page census wizard
+* *CustomerSatisfactionWizard* - Simulates a multi-page customer satisfaction wizard
+* *LoanApplicationWizard* - Simulates a multi-page loan application wizard
+* *LoanApplicationWizardSingle* - Simulates a single-page loan application wizard, each page showing up as a section in the same wizard
 
 
 ### **NOTE** 
