@@ -16,12 +16,13 @@ The *lwcWizard* component has slots in it in to which you would pass in your cus
 ```html
 <template>
   <c-lwc-wizard
-    name="censusWizard"
-    usedraft="true"
+    name="censusWizard" <!-- NAME OF THE WIZARD -->
+    usedraft="true" <!-- Tells the framework to save the state of the wizard-->
     ondraftsaveerror={handleDraftSaveError}
     ondraftloaded={handleDraftLoaded}
   >
     <div slot="wizardPages"> <!-- Setting the "wizardPages" slot of c-lwc-wizard with 2 c-lwc-wizard-page's -->
+      
       <!-- First page of the wizard named "locationPage"-->
       <c-lwc-wizard-page pagename="locationPage" isstartpage="true">
         <div class="pageClass" slot="wizardPageContent">
@@ -45,6 +46,7 @@ The *lwcWizard* component has slots in it in to which you would pass in your cus
           </div>
         </div>
       </c-lwc-wizard-page>
+      
       <!-- Second page of the wizard "addressPage" -->
       <c-lwc-wizard-page pagename="addressPage">
         <div class="pageClass" slot="wizardPageContent">
