@@ -1,4 +1,4 @@
-# LWCWizardFramework
+# LWC Wizard Framework
 
 This framework provides an easy way to create wizards and configure it with wizard pages. You can use the apis exposed on the wizard component to navigate b/w wizard pages (sequentially or to specific named pages based on conditions), validation for the pages, saving of intermediate wizard state and loading the wizard from a saved state.
 
