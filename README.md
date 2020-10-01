@@ -77,11 +77,16 @@ The *lwcWizard* component has slots in it in to which you would pass in your cus
       </c-lwc-wizard-page>
 ```
 
-The framework does the following 3 things
+Once you define your wizard and wizard pages as above, the framework does the following 3 things for you :
 
-* Ability to assign names to pages in
+* When the wizard is rendered, it automatically hides all the wizard pages and shows the one that has **isstartpage=true**
+* It provides a *switchToPage(pageName)* api : So your wizard ca listen for button clicks and switch to a named page in the wizard. The framework tracks care of hiding the current page, navigating to the new page
+* It provides a *switchBack()* api : When user clicks back the "Previous" button, your wizard can call this api to go back to the previous page. The wizard framework automatically keeps track of visited pages and maintains a history.
+* When user navigates between wizard pages, the framework automatically saves the state of the page as a json objectin a custom object named WizardDraft__c. Currently the framework saves the state of the whole wizard in a single field as a json object. But you can customize the save behavior
+* The framework provides the capability to start the wizard from a saved draft. It can do this because it saves the draft per user. So if the wizard is restarted by a user it can get the last state that the wizard was in from the WizardDraft__c object and reinitialize the wizard
 
-To understand how it works, check out some of the wizards implemented using this framework
+
+To understand how some of the framework apis that are exposed and how to use it, check out the example wizards implemented using this framework
 
 CensusWizard - Simulates a multi-page census wizard
 CustomerSatisfactionWizard - Simulates a multi-page customer satisfaction wizard
